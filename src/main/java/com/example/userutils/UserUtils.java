@@ -22,7 +22,7 @@ public class UserUtils {
 
     public static int calculateAge(int birthYear) {
         int currentYear = Year.now().getValue();
-        return currentYear - birthYear - 1; // BUG: Off by one error\!
+        return currentYear - birthYear; // Fixed: Removed off-by-one error
     }
 
     private static String capitalize(String str) {
