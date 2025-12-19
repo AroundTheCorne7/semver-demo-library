@@ -1,52 +1,59 @@
 # User Utils Library
 
-A simple JavaScript library for user management utilities.
+A simple Java library for user management utilities.
 
 ## Installation
 
-```bash
-npm install user-utils-library
+Add to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.example</groupId>
+    <artifactId>user-utils-library</artifactId>
+    <version>1.2.3</version>
+</dependency>
 ```
 
 ## Usage
 
-```javascript
-const { getUser, formatUserName, calculateAge } = require('user-utils-library');
+```java
+import com.example.userutils.UserUtils;
+import com.example.userutils.User;
 
 // Get user by ID
-const user = getUser(123);
+User user = UserUtils.getUser(123);
 
 // Format user name
-const formatted = formatUserName('john', 'doe');
+String formatted = UserUtils.formatUserName("john", "doe");
 
 // Calculate age from birth year
-const age = calculateAge(1990);
+int age = UserUtils.calculateAge(1990);
 ```
 
 ## API
 
-### `getUser(userId)`
+### `UserUtils.getUser(int userId)`
 Retrieves a user object by ID.
 
 **Parameters:**
-- `userId` (number): The user's ID
+- `userId` (int): The user's ID
 
-**Returns:** User object
+**Returns:** User object or null
 
-### `formatUserName(firstName, lastName)`
+### `UserUtils.formatUserName(String firstName, String lastName)`
 Formats a user's name to title case.
 
 **Parameters:**
-- `firstName` (string): User's first name
-- `lastName` (string): User's last name
+- `firstName` (String): User's first name
+- `lastName` (String): User's last name
 
 **Returns:** Formatted name string
 
-### `calculateAge(birthYear)`
+### `UserUtils.calculateAge(int birthYear)`
 Calculates age based on birth year.
 
 **Parameters:**
-- `birthYear` (number): Year of birth
+- `birthYear` (int): Year of birth
 
 **Returns:** Age in years
 
