@@ -25,6 +25,14 @@ public class UserUtils {
         return currentYear - birthYear - 1; // BUG: Off by one error\!
     }
 
+    public static boolean validateEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            return false;
+        }
+        String emailRegex = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$";
+        return email.matches(emailRegex);
+    }
+
     private static String capitalize(String str) {
         if (str == null || str.isEmpty()) return str;
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();

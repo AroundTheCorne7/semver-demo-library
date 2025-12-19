@@ -28,6 +28,9 @@ String formatted = UserUtils.formatUserName("john", "doe");
 
 // Calculate age from birth year
 int age = UserUtils.calculateAge(1990);
+
+// Validate email address
+boolean isValid = UserUtils.validateEmail("user@example.com");
 ```
 
 ## API
@@ -56,6 +59,14 @@ Calculates age based on birth year.
 - `birthYear` (int): Year of birth
 
 **Returns:** Age in years
+
+### `UserUtils.validateEmail(String email)`
+Validates an email address format.
+
+**Parameters:**
+- `email` (String): Email address to validate
+
+**Returns:** boolean indicating if email is valid
 
 ## Version History
 
