@@ -19,9 +19,13 @@ Add to your `pom.xml`:
 ```java
 import com.example.userutils.UserUtils;
 import com.example.userutils.User;
+import com.example.userutils.UserQuery;
 
 // Get user by ID
-User user = UserUtils.getUser(123);
+User user = UserUtils.getUser(UserQuery.byId(123));
+
+// Get user by email
+User userByEmail = UserUtils.getUser(UserQuery.byEmail("john@example.com"));
 
 // Format user name
 String formatted = UserUtils.formatUserName("john", "doe");
@@ -32,13 +36,17 @@ int age = UserUtils.calculateAge(1990);
 
 ## API
 
-### `UserUtils.getUser(int userId)`
-Retrieves a user object by ID.
+### `UserUtils.getUser(UserQuery query)`
+Retrieves a user object by ID or email.
 
 **Parameters:**
-- `userId` (int): The user's ID
+- `query` (UserQuery): Query options
+  - Use `UserQuery.byId(int)` to query by ID
+  - Use `UserQuery.byEmail(String)` to query by email
 
 **Returns:** User object or null
+
+**Throws:** IllegalArgumentException if neither id nor email provided
 
 ### `UserUtils.formatUserName(String firstName, String lastName)`
 Formats a user's name to title case.

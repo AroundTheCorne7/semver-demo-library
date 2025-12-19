@@ -1,19 +1,37 @@
 package com.example.userutils;
 
 import java.time.Year;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserUtils {
-    private static final Map<Integer, User> users = new HashMap<>();
-    
+    private static final List<User> users = new ArrayList<>();
+
     static {
-        users.put(123, new User(123, "John Doe", "john@example.com"));
-        users.put(456, new User(456, "Jane Smith", "jane@example.com"));
+        users.add(new User(123, "John Doe", "john@example.com"));
+        users.add(new User(456, "Jane Smith", "jane@example.com"));
     }
 
-    public static User getUser(int userId) {
-        return users.get(userId);
+    public static User getUser(UserQuery query) {
+        if (query == null || (query.getId() == null && query.getEmail() == null)) {
+            throw new IllegalArgumentException("Must provide either id or email");
+        }
+
+        if (query.getId() != null) {
+            return users.stream()
+                    .filter(u -> u.getId() == query.getId())
+                    .findFirst()
+                    .orElse(null);
+        }
+
+        if (query.getEmail() != null) {
+            return users.stream()
+                    .filter(u -> query.getEmail().equals(u.getEmail()))
+                    .findFirst()
+                    .orElse(null);
+        }
+
+        return null;
     }
 
     public static String formatUserName(String firstName, String lastName) {
